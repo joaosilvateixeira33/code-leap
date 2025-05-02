@@ -1,9 +1,9 @@
+import ModalLogin  from "./components/ModalLogin.js";
+import "./styles/globalStyles.css"
+
 function App() {
   return (
-    <div>
-        <h1>Opa</h1>
-        <p>Funfando</p>
-    </div>
+    <ModalLogin/>
   );
 }
 
