@@ -22,3 +22,24 @@ export const Overlay = styled.div`
     align-items: center;
     justify-content: center;
 `
+
+export const ButtonGlobal = styled.button`
+    margin-top: auto; 
+    align-self: flex-end; 
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px 20px;
+    background-color: #7695EC;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:disabled {
+        background-color: #8da7f0;
+        cursor: not-allowed;
+    }
+`

@@ -25,24 +25,4 @@ export const Modal = styled.div`
         border: 1px solid #777777;
         border-radius: 5px;
     }
-
-    button{
-        position: relative;
-        right: 0;
-        left: 37%;
-        padding: 6px 26px;
-        background-color: #7695EC;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 14px;
-        border-radius: 8px;
-        font-weight: 700;
-    }
-
-    button:disabled {
-        background-color: #8da7f0;
-        cursor: not-allowed;
-    }
 `

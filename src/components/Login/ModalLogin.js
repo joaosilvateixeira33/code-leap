@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Modal} from "./styled";
-import { Overlay } from "../../globalStyles";
+import { ButtonGlobal, Overlay } from "../../globalStyles";
 
 export default function ModalLogin({onLogin}){
     const [username, setUsername] = useState('');
@@ -31,9 +31,9 @@ export default function ModalLogin({onLogin}){
                         onChange={handleInputChange}
                     />
                 </label>
-                <button type="submit" disabled={isButtonDisabled} onClick={handleEnterClick}>
+                <ButtonGlobal type="submit" disabled={isButtonDisabled} onClick={handleEnterClick}>
                     ENTER
-                </button>
+                </ButtonGlobal>
             </Modal>
         </Overlay>
     )
