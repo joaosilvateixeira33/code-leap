@@ -31,8 +31,8 @@ export const CreatePost = styled.div`
     flex-direction: column;
     align-items: baseline;
     width: 752px;
-    height: 334px;
-    padding: 20px;
+    height: 369px;
+    padding: 25px;
     border-radius: 16px;
     gap: 20px;
 
@@ -50,16 +50,13 @@ export const CreatePost = styled.div`
         border-radius: 8px;
         padding: 10px;
         width: 100%;
-        font-size: 14px;
+        font-size: 17px;
         color:  #777777;
+        font-weight: 400;
     }
 
     textarea{
         height: 74px;
         resize: none;
-    }
-
-    button { 
-       
     }
 `
