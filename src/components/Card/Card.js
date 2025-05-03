@@ -1,3 +1,6 @@
+import { AiOutlineEdit} from "react-icons/ai";
+import { MdDeleteForever } from "react-icons/md";
+
 import {
   CardBody,
   CardBodyContent,
@@ -8,16 +11,18 @@ import {
   CardHeader,
   CardHeaderIcons,
   CardHeaderTitle,
+  CardIconsContainer,
 } from "./styled";
-import TrashIcon from "../../assets/Trash.png";
 
 export default function Card() {
   return (
     <CardContainer>
       <CardHeader>
         <CardHeaderTitle>My First Post at CodeLeap Network!</CardHeaderTitle>
-        <CardHeaderIcons src={TrashIcon} />
-        <CardHeaderIcons src={TrashIcon} />
+        <CardIconsContainer>
+          <CardHeaderIcons><MdDeleteForever/></CardHeaderIcons>
+          <CardHeaderIcons><AiOutlineEdit/></CardHeaderIcons>
+        </CardIconsContainer>
       </CardHeader>
       <CardBody>
         <CardBodyHeader>
@@ -28,8 +33,9 @@ export default function Card() {
           Curabitur suscipit suscipit tellus. Phasellus consectetuer vestibulum
           elit. Pellentesque habitant morbi tristique senectus et netus et
           malesuada fames ac turpis egestas. Maecenas egestas arcu quis ligula
-          mattis placerat. Duis vel nibh at velit scelerisque suscipit. Duis
-          lobortis massa imperdiet quam. Aenean posuere, tortor sed cursus
+          mattis placerat. Duis vel nibh at velit scelerisque suscipit.
+          
+          Duislobortis massa imperdiet quam. Aenean posuere, tortor sed cursus
           feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis
           lacus. Fusce a quam. Nullam vel sem. Nullam cursus lacinia erat.
         </CardBodyContent>

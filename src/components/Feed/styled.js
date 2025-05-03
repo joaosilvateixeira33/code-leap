@@ -23,6 +23,7 @@ export const FeedContent = styled.div`
   align-items: center;
   justfy-content: center;
   margin-top: 20px;
+  gap: 20px;
 `;
 
 export const CreatePost = styled.div`
@@ -32,7 +33,7 @@ export const CreatePost = styled.div`
   align-items: baseline;
   width: 652px;
   height: 355px;
-  padding: 25px;
+  padding: 20px;
   border-radius: 16px;
   gap: 10px;
 
