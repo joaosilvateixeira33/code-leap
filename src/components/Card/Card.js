@@ -15,10 +15,12 @@ import {
 } from "./styled";
 import { useState } from "react";
 import EditModal from "../Edit/EditModal";
+import DeleteModal from "../Delete/DeleteModal";
 
 export default function Card() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -28,12 +30,20 @@ export default function Card() {
     setIsModalOpen(true);
   };
 
+  const handleDeleteClick = () => {
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleCloseDeleteModal = () => {
+    setIsDeleteModalOpen(false);
+  };
+
   return (
     <CardContainer>
       <CardHeader>
         <CardHeaderTitle>My First Post at CodeLeap Network!</CardHeaderTitle>
         <CardIconsContainer>
-          <CardHeaderIcons><MdDeleteForever/></CardHeaderIcons>
+          <CardHeaderIcons onClick={handleDeleteClick}><MdDeleteForever/></CardHeaderIcons>
           <CardHeaderIcons onClick={handleEditClick}><AiOutlineEdit/></CardHeaderIcons>
         </CardIconsContainer>
       </CardHeader>
@@ -56,6 +66,13 @@ export default function Card() {
         <EditModal
           isOpen={isModalOpen}
           onClose={handleCloseModal}
+        />
+      )}
+
+      {isDeleteModalOpen && (
+        <DeleteModal
+          isOpen={isDeleteModalOpen}
+          onClose={handleCloseDeleteModal}
         />
       )}
     </CardContainer>
