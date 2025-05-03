@@ -1,7 +1,13 @@
 import "./styled.js";
 import { ButtonGlobal, Overlay } from "../../globalStyles.js";
-import { CreatePost, FeedContainer, FeedContent, FeedHeader } from "./styled.js";
+import {
+  CreatePost,
+  FeedContainer,
+  FeedContent,
+  FeedHeader,
+} from "./styled.js";
 import { useState } from "react";
+import Card from "../Card/Card.js";
 
 export default function Feed({ username }) {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -10,7 +16,12 @@ export default function Feed({ username }) {
 
   const handleCreateClick = () => {
     if (!isButtonDisabled) {
-      console.log("Teste - Creating post with title:", title, "and content:", content);
+      console.log(
+        "Teste - Creating post with title:",
+        title,
+        "and content:",
+        content
+      );
       setTitle("");
       setContent("");
       setIsButtonDisabled(true);
@@ -25,8 +36,8 @@ export default function Feed({ username }) {
       setContent(value);
     }
 
-    const isTitleEmpty = title === undefined || title.trim() === '';
-    const isContentEmpty = content === undefined || content.trim() === '';
+    const isTitleEmpty = title === undefined || title.trim() === "";
+    const isContentEmpty = content === undefined || content.trim() === "";
     setIsButtonDisabled(isTitleEmpty || isContentEmpty);
   };
 
@@ -54,10 +65,15 @@ export default function Feed({ username }) {
               value={content}
               onChange={handleInputChange}
             ></textarea>
-            <ButtonGlobal type="submit" disabled={isButtonDisabled} onClick={handleCreateClick}>
+            <ButtonGlobal
+              type="submit"
+              disabled={isButtonDisabled}
+              onClick={handleCreateClick}
+            >
               Create
             </ButtonGlobal>
           </CreatePost>
+          <Card></Card>
         </FeedContent>
       </FeedContainer>
     </Overlay>
