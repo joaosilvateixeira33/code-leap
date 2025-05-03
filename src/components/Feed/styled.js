@@ -31,10 +31,10 @@ export const CreatePost = styled.div`
     flex-direction: column;
     align-items: baseline;
     width: 752px;
-    height: 369px;
+    height: 355px;
     padding: 25px;
     border-radius: 16px;
-    gap: 20px;
+    gap: 10px;
 
     p{
         font-size: 22px;
@@ -56,7 +56,7 @@ export const CreatePost = styled.div`
     }
 
     textarea{
-        height: 74px;
+        height: 83px;
         resize: none;
     }
 `
