@@ -2,16 +2,16 @@ import styled from "styled-components";
 
 export const FeedContainer = styled.div`
   background-color: #ffffff;
-  width: 100%;
+  width: 100vw;
   max-width: 800px; 
   height: 100vh;
-  min-heght: 10vh;
   margin: 0 auto; 
-  padding: 20px 0; 
+  overflow-y: auto; 
 
   @media (min-width: 768px) {
     width: 800px; 
     padding: 0; 
+    height: 100vh;
   }
 `;
 
@@ -19,19 +19,29 @@ export const FeedHeader = styled.div`
   background-color: #7695ec;
   color: #ffffffff;
   width: 100%;
-  height: 60px;
+  height: auto;
   padding: 15px;
   display: flex;
   align-items: center;
   font-size: 20px;
   font-weight: 700;
+
+  @media (min-width: 576px) { 
+    height: 60px; 
+    font-size: 1.25rem;
+  }
 `;
 
 export const FeedContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justfy-content: center;
+  justify-content: flex-start;
   margin-top: 20px;
+  padding: 0 15px;
   gap: 20px;
+  width: 95%; /* O conteúdo ocupa uma largura um pouco menor, com margens nas laterais */
+  max-width: 800px; /* Largura máxima para o conteúdo em telas maiores */
+  box-sizing: border-box;
+  flex-grow: 1; /* Permite que o conteúdo cresça e ocupe o espaço restante */
 `;
