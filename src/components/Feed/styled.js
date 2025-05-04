@@ -2,9 +2,19 @@ import styled from "styled-components";
 
 export const FeedContainer = styled.div`
   background-color: #ffffff;
-  width: 800px;
-  min-height: 100vh;
+  width: 100%;
+  max-width: 800px; 
+  height: 100vh;
+  min-heght: 10vh;
+  margin: 0 auto; 
+  padding: 20px 0; 
+
+  @media (min-width: 768px) {
+    width: 800px; 
+    padding: 0; 
+  }
 `;
+
 export const FeedHeader = styled.div`
   background-color: #7695ec;
   color: #ffffffff;
