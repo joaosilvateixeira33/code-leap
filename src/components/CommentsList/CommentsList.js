@@ -4,10 +4,10 @@ import {ListContainer, CommentItem} from "./styled"
 const CommentList = () => {
     return (
       <ListContainer>
-        <h3>Comentários</h3>
+        <h3>Comments</h3>
         <CommentItem>
-            <p>Este é um comentario teste</p>
-            <span>1 dia</span>
+            <p>Hello world!!</p>
+            <span>1 days ago</span>
         </CommentItem>
         <CommentForm/>
       </ListContainer>
