@@ -1,4 +1,4 @@
-import { AiOutlineEdit} from "react-icons/ai";
+import { AiOutlineEdit } from "react-icons/ai";
 import { MdDeleteForever } from "react-icons/md";
 
 import {
@@ -16,9 +16,9 @@ import {
 import { useState } from "react";
 import EditModal from "../Edit/EditModal";
 import DeleteModal from "../Delete/DeleteModal";
+import LikeButton from "../Like/LikeButton";
 
 export default function Card() {
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -43,8 +43,12 @@ export default function Card() {
       <CardHeader>
         <CardHeaderTitle>My First Post at CodeLeap Network!</CardHeaderTitle>
         <CardIconsContainer>
-          <CardHeaderIcons onClick={handleDeleteClick}><MdDeleteForever/></CardHeaderIcons>
-          <CardHeaderIcons onClick={handleEditClick}><AiOutlineEdit/></CardHeaderIcons>
+          <CardHeaderIcons onClick={handleDeleteClick}>
+            <MdDeleteForever />
+          </CardHeaderIcons>
+          <CardHeaderIcons onClick={handleEditClick}>
+            <AiOutlineEdit />
+          </CardHeaderIcons>
         </CardIconsContainer>
       </CardHeader>
       <CardBody>
@@ -56,17 +60,17 @@ export default function Card() {
           Curabitur suscipit suscipit tellus. Phasellus consectetuer vestibulum
           elit. Pellentesque habitant morbi tristique senectus et netus et
           malesuada fames ac turpis egestas. Maecenas egestas arcu quis ligula
-          mattis placerat. Duis vel nibh at velit scelerisque suscipit.<br/><br/>
+          mattis placerat. Duis vel nibh at velit scelerisque suscipit.
+          <br />
+          <br />
           Duislobortis massa imperdiet quam. Aenean posuere, tortor sed cursus
           feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis
           lacus. Fusce a quam. Nullam vel sem. Nullam cursus lacinia erat.
         </CardBodyContent>
+        <LikeButton />
       </CardBody>
       {isModalOpen && (
-        <EditModal
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-        />
+        <EditModal isOpen={isModalOpen} onClose={handleCloseModal} />
       )}
 
       {isDeleteModalOpen && (
