@@ -17,6 +17,7 @@ import { useState } from "react";
 import EditModal from "../Edit/EditModal";
 import DeleteModal from "../Delete/DeleteModal";
 import LikeButton from "../Like/LikeButton";
+import CommentList from "../CommentsList/CommentsList";
 
 export default function Card() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -68,6 +69,7 @@ export default function Card() {
           lacus. Fusce a quam. Nullam vel sem. Nullam cursus lacinia erat.
         </CardBodyContent>
         <LikeButton />
+        <CommentList/>
       </CardBody>
       {isModalOpen && (
         <EditModal isOpen={isModalOpen} onClose={handleCloseModal} />
