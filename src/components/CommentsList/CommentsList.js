@@ -1,3 +1,4 @@
+import CommentForm from "../CommentForm/CommentForm";
 import {ListContainer, CommentItem} from "./styled"
 
 const CommentList = () => {
@@ -8,6 +9,7 @@ const CommentList = () => {
             <p>Este é um comentario teste</p>
             <span>1 dia</span>
         </CommentItem>
+        <CommentForm/>
       </ListContainer>
     );
 };
