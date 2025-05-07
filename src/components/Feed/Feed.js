@@ -9,12 +9,17 @@ import {
 import Card from "../Card/Card.js";
 import CreatePost from "../Create/CreatePost.js";
 
-export default function Feed({ username }) {
+export default function Feed({ username, onLogout }) {
   return (
     <Overlay>
       <FeedContainer>
         <FeedHeader>
           <p>CodeLeap Network</p>
+
+          <div>
+            <p>Hello, {username}</p>
+            <button onClick={onLogout}>Logout</button>
+          </div>
         </FeedHeader>
         <FeedContent>
           <CreatePost/>
