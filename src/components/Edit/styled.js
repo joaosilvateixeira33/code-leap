@@ -40,7 +40,7 @@ export const ModalContainer = styled.div`
 
   textarea {
     height: 100px;
-    resize: vertical;
+    resize: none;
   }
 
   @media (min-width: 576px) {
