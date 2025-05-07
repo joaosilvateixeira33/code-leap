@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const CreateContainer = styled.div`
   border: 1px solid #999999;
   display: flex;
@@ -26,7 +25,7 @@ export const CreateContainer = styled.div`
     border: 1px solid #777777;
     border-radius: 8px;
     padding: 10px;
-    width: 100%;
+    width: 96%;
     font-size: 17px;
     color: #777777;
     font-weight: 400;
@@ -38,20 +37,20 @@ export const CreateContainer = styled.div`
   }
 
   @media (min-width: 768px) {
-    align-items: baseline; /* Restaura o alinhamento à esquerda */
-    width: 652px; /* Restaura a largura original */
-    height: 355px; /* Restaura a altura original (se desejado) */
-    gap: 10px; /* Restaura o espaçamento original */
+    align-items: baseline; 
+    width: 652px;
+    height: 355px;
+    gap: 10px;
     p {
-      font-size: 22px; /* Restaura o tamanho da fonte original */
-      text-align: left; /* Restaura o alinhamento do título */
+      font-size: 22px;
+      text-align: left;
     }
     label {
-      font-size: 19px; /* Restaura o tamanho da fonte original */
+      font-size: 19px;
     }
     textarea {
-      height: 83px; /* Restaura a altura original */
-      resize: none; /* Restaura o comportamento original de não redimensionar */
+      height: 83px;
+      resize: none;
     }
   }
 `;

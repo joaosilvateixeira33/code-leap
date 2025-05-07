@@ -18,17 +18,32 @@ export const FeedContainer = styled.div`
 export const FeedHeader = styled.div`
   background-color: #7695ec;
   color: #ffffffff;
-  width: 100%;
   height: auto;
   padding: 15px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   font-size: 20px;
   font-weight: 700;
 
   @media (min-width: 576px) { 
     height: 60px; 
     font-size: 1.25rem;
+  }
+`;
+
+export const HeaderOptions = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  button{
+    padding: 10px;
+    background-color: transparent;
+    color: #ffffff;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
   }
 `;
 
@@ -40,8 +55,7 @@ export const FeedContent = styled.div`
   margin-top: 20px;
   padding: 0 15px;
   gap: 20px;
-  width: 95%; /* O conteúdo ocupa uma largura um pouco menor, com margens nas laterais */
-  max-width: 800px; /* Largura máxima para o conteúdo em telas maiores */
-  box-sizing: border-box;
-  flex-grow: 1; /* Permite que o conteúdo cresça e ocupe o espaço restante */
+  width: 95%; 
+  max-width: 800px;
+  flex-grow: 1;
 `;
