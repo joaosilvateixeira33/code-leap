@@ -31,6 +31,12 @@ export default function Feed({ username, onLogout }) {
     setPosts(posts.filter(post => post.id !== postIdToDelete));
   };
 
+  const handleUpdatePost = (updatedPost) => {
+    setPosts(posts.map(post =>
+      post.id === updatedPost.id ? { ...post, title: updatedPost.title, content: updatedPost.content } : post
+    ));
+  };
+
   return (
     <Overlay>
       <FeedContainer>
@@ -49,7 +55,8 @@ export default function Feed({ username, onLogout }) {
               key={post.id} 
               post={post} 
               isOwnPost={post.username === username}
-              onDelete={handleDeletePost} 
+              onDelete={handleDeletePost}
+              onEdit={handleUpdatePost}
             />
           ))}
         </FeedContent>

@@ -49,6 +49,13 @@ export default function Card({ post, isOwnPost, onDelete, onEdit }) {
     }
     setIsDeleteModalOpen(false);
   };
+  
+  const handleSaveEdit = (editedData) => {
+    if (onEdit && post) {
+      onEdit({ id: post.id, title: editedData.title, content: editedData.content });
+    }
+    setIsModalOpen(false);
+  };
 
   const getTimeAgo = (datetimeString) => {
     const createdAt = new Date(datetimeString);
@@ -97,7 +104,14 @@ export default function Card({ post, isOwnPost, onDelete, onEdit }) {
         <CommentForm postId={post.id} />
       </CardBody>
       {isModalOpen && post && (
-        <EditModal isOpen={isModalOpen} onClose={handleCloseModal} initialPost={post} />
+        <EditModal 
+          isOpen={isModalOpen} 
+          onClose={handleCloseModal} 
+          onSave={handleSaveEdit}
+          initialTitle={post.title}
+          initialContent={post.content}
+          initialPost={post} 
+        />
       )}
 
       {isDeleteModalOpen && (
