@@ -3,7 +3,7 @@ import { Modal} from "./styled";
 import { ButtonGlobal, Overlay } from "../../globalStyles";
 
 export default function ModalLogin({onLogin}){
-    const [username, setUsername] = useState('');
+    const [username, setUsername] = useState(() => localStorage.getItem('username') || 'Anonymous');
     const [isButtonDisabled, setIsButtonDisabled] = useState(true)
 
     const handleInputChange = (event) => {
@@ -15,6 +15,7 @@ export default function ModalLogin({onLogin}){
     const handleEnterClick = () => {
         if (!isButtonDisabled) {
           onLogin(username);
+          localStorage.setItem('currentUser', username);
         }
     }
 

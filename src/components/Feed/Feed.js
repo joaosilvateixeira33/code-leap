@@ -27,6 +27,10 @@ export default function Feed({ username, onLogout }) {
     setPosts([newPost, ...posts]);
   };
 
+  const handleDeletePost = (postIdToDelete) => {
+    setPosts(posts.filter(post => post.id !== postIdToDelete));
+  };
+
   return (
     <Overlay>
       <FeedContainer>
@@ -39,10 +43,14 @@ export default function Feed({ username, onLogout }) {
           </HeaderOptions>
         </FeedHeader>
         <FeedContent>
-          <CreatePost onPostCreated={handlePostCreated} />
-          {/* <Card/> */}
+          <CreatePost onPostCreated={handlePostCreated} username={username}/>
           {posts.map(post => (
-            <Card key={post.id} post={post} isOwnPost={post.username === username} />
+            <Card 
+              key={post.id} 
+              post={post} 
+              isOwnPost={post.username === username}
+              onDelete={handleDeletePost} 
+            />
           ))}
         </FeedContent>
       </FeedContainer>

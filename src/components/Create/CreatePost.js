@@ -6,7 +6,7 @@ export default function CreatePost({ onPostCreated }) {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [username, setUsername] = useState(() => localStorage.getItem('currentUser') || 'Anonymous');
+  const [username, setUsername] = useState(() => localStorage.getItem('currentUser'));
 
   const handleCreateClick = () => {
     if (!isButtonDisabled) {
@@ -19,13 +19,13 @@ export default function CreatePost({ onPostCreated }) {
       console.log("Simulando chamada POST para /api/careers/ com dados:", newPostData);
 
       const fakeResponse = {
-        id: Date.now(),
+        id: Date.now(), 
         ...newPostData,
         created_datetime: new Date().toISOString(),
       };
 
       console.log("Simulação de resposta da API:", fakeResponse);
-
+      
       if (onPostCreated) {
         onPostCreated(fakeResponse);
       }
