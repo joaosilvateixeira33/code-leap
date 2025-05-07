@@ -5,7 +5,7 @@ export const CreateContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: baseline;
-  width: 95%;
+  width: 80%;
   height: 355px;
   padding: 20px;
   border-radius: 16px;
@@ -25,7 +25,7 @@ export const CreateContainer = styled.div`
     border: 1px solid #777777;
     border-radius: 8px;
     padding: 10px;
-    width: 96%;
+    width: 90%;
     font-size: 17px;
     color: #777777;
     font-weight: 400;
@@ -41,13 +41,16 @@ export const CreateContainer = styled.div`
     width: 652px;
     height: 355px;
     gap: 10px;
+
     p {
       font-size: 22px;
       text-align: left;
     }
+
     label {
       font-size: 19px;
     }
+
     textarea {
       height: 83px;
       resize: none;

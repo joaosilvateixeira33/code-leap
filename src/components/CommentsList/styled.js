@@ -5,7 +5,7 @@ export const ListContainer = styled.div`
   padding: 15px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  width: 95%;
+  width: 89%;
   max-width: 600px;
 `;
 

@@ -21,14 +21,16 @@ export const FeedHeader = styled.div`
   height: auto;
   padding: 15px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  font-size: 20px;
+  font-size: 1rem;
   font-weight: 700;
 
   @media (min-width: 576px) { 
-    height: 60px; 
-    font-size: 1.25rem;
+    flex-direction: row;
+    height: 40px; 
+    font-size: 1rem;
   }
 `;
 
@@ -42,9 +44,11 @@ export const HeaderOptions = styled.div`
     background-color: transparent;
     color: #ffffff;
     border: none;
-    font-size: 15px;
+    font-size: 0.8em;
     cursor: pointer;
   }
+
+  
 `;
 
 export const FeedContent = styled.div`

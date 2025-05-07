@@ -9,8 +9,24 @@ import {
 
 import Card from "../Card/Card.js";
 import CreatePost from "../Create/CreatePost.js";
+import { useState, useEffect} from "react";
 
 export default function Feed({ username, onLogout }) {
+
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const fakeInitialPosts = [
+      { id: 1, username: 'Teste1', title: 'Primeiro Post', content: 'Conteúdo do primeiro post...', created_datetime: '2025-05-07T10:00:00Z' },
+      { id: 2, username: 'Teste2', title: 'Segundo Post', content: 'Conteúdo do segundo post...', created_datetime: '2025-05-06T18:00:00Z' },
+    ];
+    setPosts(fakeInitialPosts.sort((a, b) => new Date(b.created_datetime) - new Date(a.created_datetime)));
+  }, []);
+
+  const handlePostCreated = (newPost) => {
+    setPosts([newPost, ...posts]);
+  };
+
   return (
     <Overlay>
       <FeedContainer>
@@ -23,8 +39,11 @@ export default function Feed({ username, onLogout }) {
           </HeaderOptions>
         </FeedHeader>
         <FeedContent>
-          <CreatePost/>
-          <Card/>
+          <CreatePost onPostCreated={handlePostCreated} />
+          {/* <Card/> */}
+          {posts.map(post => (
+            <Card key={post.id} post={post} isOwnPost={post.username === username} />
+          ))}
         </FeedContent>
       </FeedContainer>
     </Overlay>

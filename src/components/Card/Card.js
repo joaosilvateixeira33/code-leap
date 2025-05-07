@@ -1,3 +1,4 @@
+import CommentForm from "../CommentForm/CommentForm";
 import { AiOutlineEdit } from "react-icons/ai";
 import { MdDeleteForever } from "react-icons/md";
 
@@ -19,7 +20,7 @@ import DeleteModal from "../Delete/DeleteModal";
 import LikeButton from "../Like/LikeButton";
 import CommentList from "../CommentsList/CommentsList";
 
-export default function Card() {
+export default function Card({ post, isOwnPost, onDelete, onEdit }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -29,6 +30,9 @@ export default function Card() {
 
   const handleEditClick = () => {
     setIsModalOpen(true);
+    if (onEdit && post) {
+      onEdit(post);
+    }
   };
 
   const handleDeleteClick = () => {
@@ -39,46 +43,69 @@ export default function Card() {
     setIsDeleteModalOpen(false);
   };
 
+  const handleConfirmDelete = () => {
+    if (onDelete && post) {
+      onDelete(post.id);
+    }
+    setIsDeleteModalOpen(false);
+  };
+
+  const getTimeAgo = (datetimeString) => {
+    const createdAt = new Date(datetimeString);
+    const now = new Date();
+    const differenceInMillis = now.getTime() - createdAt.getTime();
+    const differenceInMinutes = Math.floor(differenceInMillis / (1000 * 60));
+
+    if (differenceInMinutes < 1) {
+      return 'just now';
+    } else if (differenceInMinutes < 60) {
+      return `${differenceInMinutes} minutes ago`;
+    } else if (differenceInMinutes < 60 * 24) {
+      const differenceInHours = Math.floor(differenceInMinutes / 60);
+      return `${differenceInHours} hours ago`;
+    } else {
+      const differenceInDays = Math.floor(differenceInMinutes / (60 * 24));
+      return `${differenceInDays} days ago`;
+    }
+  };
+
   return (
     <CardContainer>
       <CardHeader>
-        <CardHeaderTitle>My First Post at CodeLeap Network!</CardHeaderTitle>
-        <CardIconsContainer>
-          <CardHeaderIcons onClick={handleDeleteClick}>
-            <MdDeleteForever />
-          </CardHeaderIcons>
-          <CardHeaderIcons onClick={handleEditClick}>
-            <AiOutlineEdit />
-          </CardHeaderIcons>
-        </CardIconsContainer>
+        <CardHeaderTitle>{post.title}</CardHeaderTitle>
+        {isOwnPost && (
+          <CardIconsContainer>
+            <CardHeaderIcons onClick={handleDeleteClick}>
+              <MdDeleteForever />
+            </CardHeaderIcons>
+            <CardHeaderIcons onClick={handleEditClick}>
+              <AiOutlineEdit />
+            </CardHeaderIcons>
+          </CardIconsContainer>
+        )}
       </CardHeader>
       <CardBody>
         <CardBodyHeader>
-          <CardBodyUser>@Victor</CardBodyUser>
-          <CardBodyHours>25 minutes ago</CardBodyHours>
+          <CardBodyUser>@{post.username}</CardBodyUser>
+          <CardBodyHours>{getTimeAgo(post.created_datetime)}</CardBodyHours>
         </CardBodyHeader>
         <CardBodyContent>
-          Curabitur suscipit suscipit tellus. Phasellus consectetuer vestibulum
-          elit. Pellentesque habitant morbi tristique senectus et netus et
-          malesuada fames ac turpis egestas. Maecenas egestas arcu quis ligula
-          mattis placerat. Duis vel nibh at velit scelerisque suscipit.
-          <br />
-          <br />
-          Duislobortis massa imperdiet quam. Aenean posuere, tortor sed cursus
-          feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis
-          lacus. Fusce a quam. Nullam vel sem. Nullam cursus lacinia erat.
+          {post.content}
         </CardBodyContent>
-        <LikeButton />
-        <CommentList/>
+        <LikeButton postId={post.id} initialLiked={false} initialCount={0} />
+        <CommentList postId={post.id} />
+        <CommentForm postId={post.id} />
       </CardBody>
-      {isModalOpen && (
-        <EditModal isOpen={isModalOpen} onClose={handleCloseModal} />
+      {isModalOpen && post && (
+        <EditModal isOpen={isModalOpen} onClose={handleCloseModal} initialPost={post} />
       )}
 
       {isDeleteModalOpen && (
         <DeleteModal
           isOpen={isDeleteModalOpen}
           onClose={handleCloseDeleteModal}
+          onConfirm={handleConfirmDelete}
+          itemType="post"
         />
       )}
     </CardContainer>

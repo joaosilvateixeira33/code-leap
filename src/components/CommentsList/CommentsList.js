@@ -1,4 +1,3 @@
-import CommentForm from "../CommentForm/CommentForm";
 import {ListContainer, CommentItem} from "./styled"
 
 const CommentList = () => {
@@ -9,7 +8,7 @@ const CommentList = () => {
             <p>Hello world!!</p>
             <span>1 days ago</span>
         </CommentItem>
-        <CommentForm/>
+       
       </ListContainer>
     );
 };

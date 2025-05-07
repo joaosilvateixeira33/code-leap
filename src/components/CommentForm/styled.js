@@ -34,8 +34,31 @@ export const Button = styled.button`
   border-radius: 4px;
   cursor: pointer;
   font-size: 1rem;
+  display: block;
 
   &:hover {
     background-color: #0056b3;
+  }
+`;
+
+export const showOnMobile = `
+  @media (max-width: 767px) {
+    display: block;
+  }
+`;
+
+export const MobileConditionalButton = styled(Button)`
+  display: none;
+
+  @media (max-width: 767px) {
+    display: ${props => props.hasText ? 'block' : 'none'};
+  }
+`;
+
+export const DesktopButtonContainer = styled.div`
+  display: none; /* Esconde por padrão */
+
+  @media (min-width: 768px) {
+    display: block;
   }
 `;
