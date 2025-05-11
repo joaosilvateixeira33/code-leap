@@ -1,7 +1,6 @@
 import CommentForm from "../CommentForm/CommentForm";
 import { AiOutlineEdit } from "react-icons/ai";
 import { MdDeleteForever } from "react-icons/md";
-
 import {
   CardBody,
   CardBodyContent,
@@ -14,15 +13,28 @@ import {
   CardHeaderTitle,
   CardIconsContainer,
 } from "./styled";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import EditModal from "../Edit/EditModal";
 import DeleteModal from "../Delete/DeleteModal";
 import LikeButton from "../Like/LikeButton";
 import CommentList from "../CommentsList/CommentsList";
 
-export default function Card({ post, isOwnPost, onDelete, onEdit }) {
+export default function Card({ post, isOwnPost, onDelete, onEdit, initialComments }){
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [comments, setComments] = useState([]);
+
+  console.log('Componente Card renderizado');
+
+
+  useEffect(() => {
+    console.log('useEffect com initialComments sendo executado com:', initialComments);
+    if (initialComments) {
+      setComments(prevComments => [...initialComments].sort((a, b) => new Date(b.created_at) - new Date(a.created_at)));
+    } else {
+      console.log('initialComments é undefined ou null');
+    }
+  }, [initialComments]);
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -49,12 +61,18 @@ export default function Card({ post, isOwnPost, onDelete, onEdit }) {
     }
     setIsDeleteModalOpen(false);
   };
-  
+
   const handleSaveEdit = (editedData) => {
     if (onEdit && post) {
       onEdit({ id: post.id, title: editedData.title, content: editedData.content });
     }
     setIsModalOpen(false);
+  };
+
+  const handleCommentSubmit = (newComment) => {
+    setComments(prevComments => [newComment, ...prevComments]);
+    console.log('Novo comentário submetido no Card:', newComment);
+    console.log('Estado comments atualizado no Card:', [newComment, ...comments]); 
   };
 
   const getTimeAgo = (datetimeString) => {
@@ -100,17 +118,17 @@ export default function Card({ post, isOwnPost, onDelete, onEdit }) {
           {post.content}
         </CardBodyContent>
         <LikeButton postId={post.id} initialLiked={false} initialCount={0} />
-        <CommentList postId={post.id} />
-        <CommentForm postId={post.id} />
+        <CommentList postId={post.id} comments={comments} />
+        <CommentForm postId={post.id} onCommentSubmit={handleCommentSubmit} />
       </CardBody>
       {isModalOpen && post && (
-        <EditModal 
-          isOpen={isModalOpen} 
-          onClose={handleCloseModal} 
+        <EditModal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
           onSave={handleSaveEdit}
           initialTitle={post.title}
           initialContent={post.content}
-          initialPost={post} 
+          initialPost={post}
         />
       )}
 

@@ -14,6 +14,11 @@ import { useState, useEffect} from "react";
 export default function Feed({ username, onLogout }) {
 
   const [posts, setPosts] = useState([]);
+  const [commentsData, setCommentsData] = useState([
+    { id: 101, postId: 1, username: 'ComentadorA', text: 'Comentário inicial no post 1!', created_at: '2025-05-08T10:00:00Z' },
+    { id: 102, postId: 2, username: 'ComentadorB', text: 'Primeiro comentário no post 2.', created_at: '2025-05-07T12:00:00Z' },
+    { id: 103, postId: 1, username: 'ComentadorC', text: 'Outro comentário no post 1.', created_at: '2025-05-09T15:00:00Z' },
+  ]);
 
   useEffect(() => {
     const fakeInitialPosts = [
@@ -42,7 +47,6 @@ export default function Feed({ username, onLogout }) {
       <FeedContainer>
         <FeedHeader>
           <p>CodeLeap Network</p>
-
           <HeaderOptions>
             <p>Hello, {username}</p>
             <button onClick={onLogout}>Logout</button>
@@ -50,15 +54,19 @@ export default function Feed({ username, onLogout }) {
         </FeedHeader>
         <FeedContent>
           <CreatePost onPostCreated={handlePostCreated} username={username}/>
-          {posts.map(post => (
-            <Card 
-              key={post.id} 
-              post={post} 
-              isOwnPost={post.username === username}
-              onDelete={handleDeletePost}
-              onEdit={handleUpdatePost}
-            />
-          ))}
+          {posts.map(post => {
+            const initialCommentsForPost = commentsData.filter(comment => comment.postId === post.id);
+            return (
+              <Card
+                key={post.id}
+                post={post}
+                isOwnPost={post.username === username}
+                onDelete={handleDeletePost}
+                onEdit={handleUpdatePost}
+                initialComments={initialCommentsForPost}
+              />
+            );
+          })}
         </FeedContent>
       </FeedContainer>
     </Overlay>

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, FormContainer, MobileConditionalButton, TextArea, DesktopButtonContainer } from "./styled";
 import { IoMdSend } from "react-icons/io";
 
-const CommentForm = () => {
+const CommentForm = ({ postId, onCommentSubmit }) => {
   const [commentText, setCommentText] = useState('');
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
@@ -23,7 +23,17 @@ const CommentForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (commentText.trim()) {
-      console.log('Comentário enviado:', commentText);
+      const newComment = {
+        postId: postId,
+        username: localStorage.getItem('currentUser') || 'Anonymous',
+        created_at: new Date().toISOString(),
+        id: Date.now(),
+        text: commentText,
+      };
+
+      if (onCommentSubmit) {
+        onCommentSubmit(newComment);
+      }
       setCommentText('');
     }
   };
